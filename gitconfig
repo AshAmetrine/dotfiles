@@ -1,7 +1,7 @@
 [user]
 	name = Ash Ametrine
-	email = ashu9s@proton.me
-	signingkey = 6DDFB40F9A329EF46CCECF67EF86FC12BB84F79E
+	email = me@ashametrine.dev
+	signingkey = BE6A59BC96ABE7B5B507ECE83C6433DF2A247156
 [init]
 	defaultBranch = main
 [pull]

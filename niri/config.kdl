@@ -260,9 +260,8 @@ window-rule {
 
 window-rule {
     match app-id=r#"Tor Browser$"#
-    match app-id=r#"librewolf$"#
+    //match app-id=r#"librewolf$"#
     match app-id=r#"firefox$"#
-    match app-id=r#"qutebrowser$"#
 
     match app-id=r#"^com\.obsproject\.Studio$"#
 

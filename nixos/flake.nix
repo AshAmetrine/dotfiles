@@ -24,7 +24,7 @@
 
     # Remote flake packages
     ash-quickshell-flake = {
-      url = "github:Kawaii-Ash/ash-quickshell";
+      url = "github:ashametrine/ash-quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     awww-flake = {
@@ -33,6 +33,11 @@
     };
     iamb-flake = {
       url = "github:ulyssa/iamb";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    codex-cli-nix = {
+      url = "github:sadjow/codex-cli-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -47,6 +52,7 @@
       ash-quickshell-flake,
       awww-flake,
       iamb-flake,
+      codex-cli-nix,
       wrappers,
     }:
     let
@@ -59,6 +65,7 @@
         ash-quickshell = ash-quickshell-flake.packages.${prev.stdenv.hostPlatform.system}.default;
         iamb = iamb-flake.packages.${prev.stdenv.hostPlatform.system}.default;
         awww = awww-flake.packages.${prev.stdenv.hostPlatform.system}.default;
+        codex = codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
       };
       nixpkgs-overlay-module = (
         { ... }:

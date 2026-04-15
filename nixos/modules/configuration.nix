@@ -113,7 +113,7 @@
       nnn
 
       # Dev Tools
-      unstable.codex
+      codex
       git
       jujutsu
 
@@ -161,7 +161,7 @@
   services = {
     mullvad-vpn.enable = true;
     udisks2.enable = true;
-    gnome.gnome-keyring.enable = true; # System keyring
+    gnome.gnome-keyring.enable = true;
 
     pipewire = {
       enable = true;
