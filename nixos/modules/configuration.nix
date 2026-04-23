@@ -114,6 +114,7 @@
 
       # Dev Tools
       codex
+      playwright-mcp
       git
       jujutsu
 

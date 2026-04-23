@@ -59,14 +59,21 @@
       lib = nixpkgs.lib;
       systems = [ "x86_64-linux" ];
       forAllSystems = lib.genAttrs systems;
-      overlay = final: prev: {
-        unstable = nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system};
-        ashpkgs = mypkgs-ash.legacyPackages.${prev.stdenv.hostPlatform.system};
-        ash-quickshell = ash-quickshell-flake.packages.${prev.stdenv.hostPlatform.system}.default;
-        iamb = iamb-flake.packages.${prev.stdenv.hostPlatform.system}.default;
-        awww = awww-flake.packages.${prev.stdenv.hostPlatform.system}.default;
-        codex = codex-cli-nix.packages.${prev.stdenv.hostPlatform.system}.default;
-      };
+      overlay =
+        final: prev:
+        let
+          system = prev.stdenv.hostPlatform.system;
+          unstablePkgs = nixpkgs-unstable.legacyPackages.${system};
+        in
+        {
+          unstable = unstablePkgs;
+          jujutsu = unstablePkgs.jujutsu;
+          ashpkgs = mypkgs-ash.legacyPackages.${system};
+          ash-quickshell = ash-quickshell-flake.packages.${system}.default;
+          iamb = iamb-flake.packages.${system}.default;
+          awww = awww-flake.packages.${system}.default;
+          codex = codex-cli-nix.packages.${system}.default;
+        };
       nixpkgs-overlay-module = (
         { ... }:
         {
@@ -107,12 +114,23 @@
           system = "x86_64-linux";
           modules = [ ./hosts/installation/installation.nix ];
         };
+        codexVM = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ 
+            nixpkgs-overlay-module 
+            ./hosts/codex-vm/vm.nix 
+          ];
+        };
       };
 
       apps = forAllSystems (system: {
         disko = {
-          type="app";
+          type = "app";
           program = "${disko.packages.${system}.disko}/bin/disko";
+        };
+        codex-vm = {
+          type = "app";
+          program = "${self.nixosConfigurations.codexVM.config.system.build.vm}/bin/run-codex-vm-vm";
         };
       });
 
