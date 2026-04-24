@@ -1,5 +1,5 @@
-{pkgs, ... }:
-let 
+{ pkgs, ... }:
+let
   theme-name = "Tokyonight-Dark";
   icon-theme = "BeautyLine";
 in
@@ -31,15 +31,17 @@ in
   };
 
   programs.dconf.profiles.user = {
-    databases = [{
-      lockAll = true;
-      settings = {
-        "org/gnome/desktop/interface" = {
-          color-scheme = "prefer-dark";
-          gtk-theme = theme-name;
-          icon-theme = icon-theme;
+    databases = [
+      {
+        lockAll = true;
+        settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+            gtk-theme = theme-name;
+            icon-theme = icon-theme;
+          };
         };
-      };
-    }];
+      }
+    ];
   };
 }

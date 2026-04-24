@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -13,7 +12,7 @@
     biosSupport = true;
     biosDevice = lib.mkDefault "/dev/sda";
     maxGenerations = 3;
-    linuxResolution = "1920x1080x32";
+    resolution = "1920x1080x32";
     style = {
       wallpapers = [ ./sophia.png ];
       interface = {
@@ -38,14 +37,7 @@
     hostName = "l15v3-c7f5";
     useDHCP = true;
     wireless.iwd.enable = true;
-
-    # Encrypted dns - services.dnscrypt-proxy
-    #nameservers = [ "127.0.0.1" "::1" ];
-    #dhcpcd.extraConfig = ''
-      #nohook resolv.conf
-    #'';
   };
-
 
   users.users = {
     Ash = {
@@ -58,7 +50,12 @@
   };
 
   nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "trezor-suite" "veracrypt" ];
+    allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "trezor-suite"
+        "veracrypt"
+      ];
   };
 
   services = {

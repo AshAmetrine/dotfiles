@@ -345,6 +345,10 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
+    // Brightness keymaps
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "brightnessctl --quiet set +5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl --quiet set 5%-"; }
+
     Mod+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }

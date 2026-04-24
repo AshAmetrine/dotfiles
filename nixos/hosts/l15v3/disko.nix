@@ -11,7 +11,7 @@
               size = "1M";
               type = "EF02";
             };
-            
+
             boot = {
               size = "512M";
               content = {

@@ -35,6 +35,10 @@ end
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 --capabilities.semanticTokensProvider = nil;
 
+vim.diagnostic.config({
+  virtual_text = true,
+})
+
 vim.lsp.config('*', {
   on_attach = on_attach,
   capabilities = capabilities,

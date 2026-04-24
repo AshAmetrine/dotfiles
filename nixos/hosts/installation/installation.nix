@@ -1,4 +1,9 @@
-{ pkgs, lib, modulesPath, ... }:
+{
+  pkgs,
+  lib,
+  modulesPath,
+  ...
+}:
 {
   imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
 
@@ -52,9 +57,9 @@
     "flakes"
   ];
 
-  environment.systemPackages = with pkgs; [ 
-    impala 
-    ((vim.override {  }).customize{
+  environment.systemPackages = with pkgs; [
+    impala
+    ((vim.override { }).customize {
       name = "vim";
       vimrcConfig.customRC = ''
         map Q <Nop>

@@ -4,10 +4,10 @@
 
 linkFarm "zig-packages" [
   {
-    name = "wayland-0.4.0-lQa1khbMAQAsLS2eBR7M5lofyEGPIbu2iFDmoz8lPC27";
+    name = "wayland-0.6.0-lQa1kqz8AQADQmdNJsNhLoNHcnEGEUjrOaPV-dtEnEmX";
     path = fetchzip {
-      url = "https://codeberg.org/ifreund/zig-wayland/archive/v0.4.0.tar.gz";
-      hash = "sha256-ulIII5iJpM/W/VJB0HcdktEO2eb9T9J0ln2A1Z94dU4=";
+      url = "https://codeberg.org/ifreund/zig-wayland/archive/v0.6.0.tar.gz";
+      hash = "sha256-3m/ITNhZUJ/5uD/Tqm+0uZSktGoYgWF5oldOqOCUkIE=";
     };
   }
   {
@@ -18,11 +18,11 @@ linkFarm "zig-packages" [
     };
   }
   {
-    name = "zigimg-0.1.0-8_eo2vUZFgAAtN1c6dAO5DdqL0d4cEWHtn6iR5ucZJti";
+    name = "zigimg-0.1.0-8_eo2sywFwArMrr5UlqjhhAMbRtpmC4mL5KbBmjrxFba";
     path = fetchgit {
-      url = "https://github.com/zigimg/zigimg.git";
-      rev = "eab2522c023b9259db8b13f2f90d609b7437e5f6";
-      hash = "sha256-e42T/ZmRzuzWAhwWkcWScukcOd6rNZ1VK1wk0XGTVKs=";
+      url = "https://github.com/zigimg/zigimg";
+      rev = "4cab5a17d4c76584723576fcc11497293c25d092";
+      hash = "sha256-5+FqdeSS/rG4alAelMd6+k4F8D9XX/srgcrzouid9Kc=";
     };
   }
 ]

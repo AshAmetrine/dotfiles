@@ -15,7 +15,7 @@
           twilight-nvim
           nvim-web-devicons
           vim-devicons
-          
+
           lualine-nvim
           nvim-lspconfig
           lsp_signature-nvim
@@ -27,7 +27,21 @@
           conform-nvim
 
           # Language Support
-          (nvim-treesitter.withPlugins (plugins: with plugins; [ nix zig fish typescript rust lua c vimdoc superhtml ziggy yaml ]))
+          (nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              nix
+              zig
+              fish
+              typescript
+              rust
+              lua
+              c
+              vimdoc
+              superhtml
+              ziggy
+              yaml
+            ]
+          ))
 
           #fyler-nvim
           #mini-icons

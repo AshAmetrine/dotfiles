@@ -2,8 +2,7 @@
   description = "Flake for Ash's config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     disko = {
       url = "github:nix-community/disko";
@@ -27,14 +26,6 @@
       url = "github:ashametrine/ash-quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    awww-flake = {
-      url = "git+https://codeberg.org/LGFae/awww";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    iamb-flake = {
-      url = "github:ulyssa/iamb";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     codex-cli-nix = {
       url = "github:sadjow/codex-cli-nix";
@@ -46,12 +37,9 @@
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
       disko,
       mypkgs-ash,
       ash-quickshell-flake,
-      awww-flake,
-      iamb-flake,
       codex-cli-nix,
       wrappers,
     }:
@@ -63,15 +51,10 @@
         final: prev:
         let
           system = prev.stdenv.hostPlatform.system;
-          unstablePkgs = nixpkgs-unstable.legacyPackages.${system};
         in
         {
-          unstable = unstablePkgs;
-          jujutsu = unstablePkgs.jujutsu;
-          ashpkgs = mypkgs-ash.legacyPackages.${system};
+          ashpkgs = mypkgs-ash.packages.${system};
           ash-quickshell = ash-quickshell-flake.packages.${system}.default;
-          iamb = iamb-flake.packages.${system}.default;
-          awww = awww-flake.packages.${system}.default;
           codex = codex-cli-nix.packages.${system}.default;
         };
       nixpkgs-overlay-module = (
@@ -84,7 +67,23 @@
     {
       overlays.default = overlay;
 
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              nixd
+              nixfmt
+              nixfmt-tree
+            ];
+          };
+        }
+      );
 
       nixosConfigurations = {
         l15v3 = nixpkgs.lib.nixosSystem {
@@ -92,9 +91,8 @@
           modules = [
             nixpkgs-overlay-module
             disko.nixosModules.disko
-            wrappers.nixosModules.nixos-wrappers
+            wrappers.nixosModules.system-wrappers
 
-            ./nixos/overrides/limine/default.nix
             ./nixos/hosts/l15v3/l15v3.nix
             ./nixos/hosts/l15v3/disko.nix
             ./nixos/hosts/l15v3/hardware-configuration.nix

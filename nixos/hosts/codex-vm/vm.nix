@@ -1,4 +1,9 @@
-{ modulesPath, pkgs, ... }:
+{
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ (modulesPath + "/virtualisation/qemu-vm.nix") ];
 
@@ -33,9 +38,15 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  programs.git.enable = true;
+  programs = {
+    git.enable = true;
+    direnv.enable = true;
+  };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.systemPackages = with pkgs; [
     jujutsu
@@ -48,13 +59,14 @@
 
   virtualisation = {
     cores = 2;
-    memorySize = 8192;
+    memorySize = 12 * 1024;
+    diskSize = 32 * 1024;
     graphics = false;
     sharedDirectories = {
-      projects = { 
+      projects = {
         source = "/home/Ash/Dev";
         target = "/home/codex/Dev";
-        securityModel = "mapped-file";
+        securityModel = "mapped-xattr";
       };
     };
     forwardPorts = [
@@ -64,6 +76,14 @@
         guest.port = 22;
       }
     ];
+    fileSystems."/nix/.rw-store" = lib.mkForce {
+      fsType = "tmpfs";
+      neededForBoot = true;
+      options = [
+        "mode=0755"
+        "size=6G"
+      ];
+    };
   };
 
   system.stateVersion = "25.11";

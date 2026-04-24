@@ -1,4 +1,5 @@
 .direnv
 .env
 .codex
+.agents
 .virtfs_metadata

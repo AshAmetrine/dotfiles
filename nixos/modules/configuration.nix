@@ -68,10 +68,6 @@
       pinentryPackage = pkgs.pinentry-curses;
     };
 
-    light = {
-      enable = true;
-      brightnessKeys.enable = true;
-    };
   };
 
   wrappers = {
@@ -127,9 +123,10 @@
       python3
 
       # Formatters
-      nixfmt-rfc-style
+      nixfmt
 
       # Other
+      brightnessctl
       udiskie
       ripgrep
       openssl
@@ -171,30 +168,30 @@
       audio.enable = true;
 
       wireplumber = {
-          enable = true;
-          configPackages = [
-            (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-              monitor.bluez.properties = {
-                bluez5.enable-hw-volume = false,
-              }
+        enable = true;
+        configPackages = [
+          (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+            monitor.bluez.properties = {
+              bluez5.enable-hw-volume = false,
+            }
 
-              monitor.bluez.rules = [
-                {
-                  matches = [ { "device.api" = "bluez5" } ]
-                  actions = { update-props = { "node.volume" = 0.0 } }
-                }
-              ]
-            '')
-            (pkgs.writeTextDir "share/wireplumber/alsa.lua.d/51-alsa-default-volume.lua" ''
-              monitor.alsa.rules = [
-                {
-                  matches = [ { "device.api" = "alsa" } ]
-                  actions = { update-props = { "node.volume" = 0.0 } }
-                }
-              ]
-            '')
-          ];
-        };
+            monitor.bluez.rules = [
+              {
+                matches = [ { "device.api" = "bluez5" } ]
+                actions = { update-props = { "node.volume" = 0.0 } }
+              }
+            ]
+          '')
+          (pkgs.writeTextDir "share/wireplumber/alsa.lua.d/51-alsa-default-volume.lua" ''
+            monitor.alsa.rules = [
+              {
+                matches = [ { "device.api" = "alsa" } ]
+                actions = { update-props = { "node.volume" = 0.0 } }
+              }
+            ]
+          '')
+        ];
+      };
     };
 
     getty.greetingLine = ''
