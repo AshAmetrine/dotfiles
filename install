@@ -1,11 +1,16 @@
 #!/bin/sh
 
-echo -e "\nCreating symlinks...\n"
+set -eu
 
-mkdir -p ~/.config/niri ~/.config/iamb
+repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+dotfiles_dir="$repo_dir/dotfiles"
 
-ln -is $(pwd)/niri/config.kdl ~/.config/niri/
-ln -is $(pwd)/gitconfig ~/.gitconfig
-ln -is $(pwd)/gitignore ~/.gitignore
-ln -is $(pwd)/iamb/config.toml ~/.config/iamb/
-ln -is $(pwd)/scdaemon.conf ~/.gnupg/
+printf "\nCreating symlinks...\n\n"
+
+mkdir -p "$HOME/.config/niri" "$HOME/.config/iamb" "$HOME/.gnupg"
+
+ln -is "$dotfiles_dir/niri/config.kdl" "$HOME/.config/niri/"
+ln -is "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
+ln -is "$dotfiles_dir/gitignore" "$HOME/.gitignore"
+ln -is "$dotfiles_dir/iamb/config.toml" "$HOME/.config/iamb/"
+ln -is "$dotfiles_dir/scdaemon.conf" "$HOME/.gnupg/"

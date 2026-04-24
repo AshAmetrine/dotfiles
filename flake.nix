@@ -12,7 +12,7 @@
 
     # Packages not available in nixpkgs/elsewhere
     mypkgs-ash = {
-      url = "path:./packages";
+      url = "path:./nixos/packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,31 +94,31 @@
             disko.nixosModules.disko
             wrappers.nixosModules.nixos-wrappers
 
-            ./overrides/limine/default.nix
-            ./hosts/l15v3/l15v3.nix
-            ./hosts/l15v3/disko.nix
-            ./hosts/l15v3/hardware-configuration.nix
+            ./nixos/overrides/limine/default.nix
+            ./nixos/hosts/l15v3/l15v3.nix
+            ./nixos/hosts/l15v3/disko.nix
+            ./nixos/hosts/l15v3/hardware-configuration.nix
 
-            ./modules/configuration.nix
+            ./nixos/modules/configuration.nix
             # Optional modules
-            ./modules/neovim.nix
-            ./modules/i2p.nix
-            ./modules/tor.nix
-            ./modules/fcitx5.nix
-            ./modules/librewolf.nix
-            ./modules/gtk-theme.nix
-            ./modules/wayland.nix
+            ./nixos/modules/neovim.nix
+            ./nixos/modules/i2p.nix
+            ./nixos/modules/tor.nix
+            ./nixos/modules/fcitx5.nix
+            ./nixos/modules/librewolf.nix
+            ./nixos/modules/gtk-theme.nix
+            ./nixos/modules/wayland.nix
           ];
         };
         installationIso = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./hosts/installation/installation.nix ];
+          modules = [ ./nixos/hosts/installation/installation.nix ];
         };
         codexVM = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ 
-            nixpkgs-overlay-module 
-            ./hosts/codex-vm/vm.nix 
+          modules = [
+            nixpkgs-overlay-module
+            ./nixos/hosts/codex-vm/vm.nix
           ];
         };
       };

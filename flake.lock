@@ -243,11 +243,11 @@
         ]
       },
       "locked": {
-        "path": "./packages",
+        "path": "./nixos/packages",
         "type": "path"
       },
       "original": {
-        "path": "./packages",
+        "path": "./nixos/packages",
         "type": "path"
       },
       "parent": []

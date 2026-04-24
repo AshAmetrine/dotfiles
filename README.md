@@ -8,8 +8,8 @@
 
 **Apply disk layout and mount (will erase all data):**
 
-`nix run ./nixos#disko -- --mode destroy,format,mount --flake ./nixos#hostname`
+`nix run .#disko -- --mode destroy,format,mount --flake .#hostname`
 
 **Install NixOS:**
 
-`sudo nixos-install --flake ./nixos#hostname`
+`sudo nixos-install --flake .#hostname`
