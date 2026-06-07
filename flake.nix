@@ -80,6 +80,7 @@
               nixd
               nixfmt
               nixfmt-tree
+              stylua
             ];
           };
         }

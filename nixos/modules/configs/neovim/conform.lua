@@ -1,8 +1,6 @@
-local util = require("conform.util")
-
 require("conform").setup({
     formatters_by_ft = {
-        lua = {"lua-format"},
+        lua = {"stylua"},
         nix = {"nixfmt"},
         ["_"] = {"trim_whitespace"}
     },
