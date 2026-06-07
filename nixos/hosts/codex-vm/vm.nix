@@ -64,7 +64,7 @@
     graphics = false;
     sharedDirectories = {
       projects = {
-        source = "/home/Ash/Dev";
+        source = "/home/ash/Dev";
         target = "/home/codex/Dev";
         securityModel = "mapped-xattr";
       };

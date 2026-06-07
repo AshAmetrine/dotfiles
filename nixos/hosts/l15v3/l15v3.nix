@@ -40,7 +40,7 @@
   };
 
   users.users = {
-    Ash = {
+    ash = {
       isNormalUser = true;
       extraGroups = [
         "wheel"
