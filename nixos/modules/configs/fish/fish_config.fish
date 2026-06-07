@@ -1,18 +1,18 @@
-set fish_greeting
-set fish_color_command normal
-set fish_color_error red
-set fish_color_keyword magenta
-set fish_color_param normal
-set fish_color_quote green
-set fish_color_redirection blue
-set fish_color_end normal
-set fish_color_comment brblack
-set fish_color_operator normal
-set fish_color_autosuggestion brblack
+set -g fish_greeting
+set -g fish_color_command normal
+set -g fish_color_error red
+set -g fish_color_keyword magenta
+set -g fish_color_param normal
+set -g fish_color_quote green
+set -g fish_color_redirection blue
+set -g fish_color_end normal
+set -g fish_color_comment brblack
+set -g fish_color_operator normal
+set -g fish_color_autosuggestion brblack
 
-set fish_pager_color_description blue
-set fish_page_color_completion blue
-set fish_pager_color_progress --background=brblack
+set -g fish_pager_color_description blue
+set -g fish_pager_color_completion blue
+set -g fish_pager_color_progress --background=brblack
 
 set fish_prompt_suffix ϕ λ
 set fish_prompt_suffix $fish_prompt_suffix[(random 1 2)]
