@@ -232,8 +232,25 @@ layer-rule {
 layer-rule {
     match namespace="^notifications$"
     opacity 0.9
+    geometry-corner-radius 20
 
     block-out-from "screen-capture"
+}
+
+layer-rule {
+    match namespace="^launcher$"
+
+    geometry-corner-radius 20
+}
+
+layer-rule {
+    match namespace="^notifications$"
+    match namespace="^launcher$"
+
+    background-effect {
+        blur true
+        xray false
+    }
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -244,6 +261,10 @@ window-rule {
     geometry-corner-radius 20
     clip-to-geometry true
     opacity 0.98
+
+    background-effect {
+        blur true
+    }
 }
 
 window-rule {
