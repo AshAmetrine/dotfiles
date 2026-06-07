@@ -1,0 +1,57 @@
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[user]
+name = "Ash Ametrine"
+email = "me@ashametrine.dev"
+
+[ui.movement]
+edit = true
+
+[revsets]
+bookmark-advance-to = "closest_pushable(@)"
+
+[revset-aliases]
+"branch_start(to)" = "roots(trunk()..to)"
+'closest_pushable(to)' = 'heads(::to & ~description(exact:"") & (~empty() | merges()))'
+
+[aliases]
+s = ["status"]
+d = ["diff"]
+l = ["log"]
+ll = ["log", "-r", "(trunk()..@):: | (trunk()..@)- | @ | trunk()"]
+b = ["bookmark"]
+n = ["new"]
+e = ["edit"]
+sq = ["squash"]
+g = ["git"]
+gf = ["git", "fetch"]
+gp = ["git", "push"]
+tug = ["bookmark", "advance"]
+desc = ["describe"]
+collapse = ["squash", "-f", "branch_start(@)+::@", "-t", "branch_start(@)"]
+precommit = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -eu
+    cd "$JJ_WORKSPACE_ROOT"
+    [ ! -f flake.nix ] || { nix fmt; printf '\n'; }
+    jj status
+    ''',
+    "",
+]
+clone-from = [
+  "util", "exec", "--", "bash", "-c",
+  '''
+  set -eu
+
+  host="$1"
+  repo="$2"
+  name="${repo#*/}"
+  dest="${3:-$name}"
+
+  jj git clone "git@$host:$repo.git" "$dest"
+  ''',
+  "",
+]
+ghclone = ["clone-from", "github.com"]
+cbclone = ["clone-from", "codeberg.org"]

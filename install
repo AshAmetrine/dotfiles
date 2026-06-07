@@ -7,9 +7,10 @@ dotfiles_dir="$repo_dir/dotfiles"
 
 printf "\nCreating symlinks...\n\n"
 
-mkdir -p "$HOME/.config/niri" "$HOME/.config/iamb" "$HOME/.gnupg"
+mkdir -p "$HOME/.config/niri" "$HOME/.config/iamb" "$HOME/.gnupg" "$HOME/.config/jj"
 
 ln -is "$dotfiles_dir/niri/config.kdl" "$HOME/.config/niri/"
+ln -is "$dotfiles_dir/jj/config.toml" "$HOME/.config/jj/"
 ln -is "$dotfiles_dir/gitconfig" "$HOME/.gitconfig"
 ln -is "$dotfiles_dir/gitignore" "$HOME/.gitignore"
 ln -is "$dotfiles_dir/iamb/config.toml" "$HOME/.config/iamb/"
