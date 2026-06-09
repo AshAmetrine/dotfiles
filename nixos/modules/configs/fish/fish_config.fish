@@ -22,7 +22,9 @@ set fish_prompt_pwd_full_dirs 2
 function fish_prompt
     set -l nix_shell_info (
         if test -n "$IN_NIX_SHELL"
-            echo -n "[nix-shell] "
+            set_color blue
+            echo -n " "
+            set_color normal
         end
     )
 
