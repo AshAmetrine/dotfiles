@@ -9,12 +9,10 @@
     configure = {
       packages.myVimPackages = {
         start = with pkgs.vimPlugins; [
-          nerdcommenter
           vim-gitgutter
           zen-mode-nvim
           twilight-nvim
           nvim-web-devicons
-          vim-devicons
 
           lualine-nvim
           nvim-lspconfig
@@ -23,7 +21,6 @@
           blink-emoji-nvim
           tokyonight-nvim
           nvim-autopairs
-          vim-fugitive
           conform-nvim
           toggleterm-nvim
 
