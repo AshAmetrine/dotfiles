@@ -25,6 +25,7 @@
           nvim-autopairs
           vim-fugitive
           conform-nvim
+          toggleterm-nvim
 
           # Language Support
           (nvim-treesitter.withPlugins (
@@ -68,6 +69,8 @@
           ${lib.strings.fileContents ./configs/neovim/lualine.lua}
 
           ${lib.strings.fileContents ./configs/neovim/conform.lua}
+
+          ${lib.strings.fileContents ./configs/neovim/toggleterm.lua}
 
           ${lib.strings.fileContents ./configs/neovim/nvim-tree.lua}
 
