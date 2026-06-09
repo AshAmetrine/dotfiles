@@ -32,3 +32,4 @@ vim.api.nvim_set_keymap('n', '<leader>r', ':NvimTreeRefresh<CR>', {noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeFindFile<CR>', {noremap = true})
 
 vim.cmd('hi NvimTreeGitDirty guifg=#f7768e')
+vim.cmd('hi NvimTreeWinSeparator guibg=NONE')

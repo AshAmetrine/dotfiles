@@ -8,6 +8,8 @@ local lualine = require('lualine')
 local colors = {
   bg       = '#1f2335',
   fg       = '#bbc2cf',
+  fg_dark  = '#565f89',
+  cursorline = '#292e42',
   yellow   = '#ECBE7B',
   cyan     = '#008080',
   darkblue = '#081633',
@@ -17,6 +19,11 @@ local colors = {
   magenta  = '#c678dd',
   blue     = '#51afef',
   red      = '#ec5f67',
+}
+
+local tabline_colors = {
+  active = { fg = colors.fg, bg = colors.cursorline },
+  inactive = { fg = colors.fg_dark, bg = colors.bg },
 }
 
 local conditions = {
@@ -39,8 +46,9 @@ local config = {
     -- Disable sections and component separators
     component_separators = '',
     section_separators = '',
-    theme = 'tokyonight',
-    disabled_filetypes = { 'NvimTree' }
+    theme = 'tokyonight-storm',
+    disabled_filetypes = { 'NvimTree' },
+    always_show_tabline = true,
   },
   sections = {
     -- these are to remove the defaults
@@ -60,6 +68,34 @@ local config = {
     lualine_z = {},
     lualine_c = {},
     lualine_x = {},
+  },
+  tabline = {
+    lualine_a = {
+      {
+        'buffers',
+        show_modified_status = true,
+        buffers_color = tabline_colors,
+        symbols = {
+          modified = ' ●',
+          alternate_file = '#',
+          directory = '',
+        },
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {
+      {
+        'tabs',
+        show_modified_status = true,
+        tabs_color = tabline_colors,
+        symbols = {
+          modified = ' ●',
+        },
+      },
+    },
   },
 }
 
@@ -81,26 +117,26 @@ ins_left {
   color = function()
     -- auto change color according to neovims mode
     local mode_color = {
-      n = colors.red,
+      n = colors.blue,
       i = colors.green,
-      v = colors.blue,
-      [''] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
-      no = colors.red,
+      v = colors.violet,
+      [''] = colors.violet,
+      V = colors.violet,
+      c = colors.yellow,
+      no = colors.blue,
       s = colors.orange,
       S = colors.orange,
       [''] = colors.orange,
       ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
-      cv = colors.red,
-      ce = colors.red,
+      R = colors.red,
+      Rv = colors.red,
+      cv = colors.yellow,
+      ce = colors.yellow,
       r = colors.cyan,
       rm = colors.cyan,
       ['r?'] = colors.cyan,
-      ['!'] = colors.red,
-      t = colors.red,
+      ['!'] = colors.orange,
+      t = colors.green,
     }
     return { fg = mode_color[vim.fn.mode()] }
   end,
