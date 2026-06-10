@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 ---- Nvim Tree
 require('nvim-tree').setup({
     --open_on_setup = true,
+    sync_root_with_cwd = true,
     filters = {
         dotfiles = true,
         custom = { "node_modules" }
