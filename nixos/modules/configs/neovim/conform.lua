@@ -30,7 +30,7 @@ require("conform").setup({
 -- desc = "Re-enable autoformat-on-save",
 -- })
 
-vim.keymap.set("n", "<space>f", function()
+vim.keymap.set("n", "<leader>f", function()
     require("conform").format({
         async = true,
         lsp_format = "fallback",
