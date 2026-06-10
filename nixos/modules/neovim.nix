@@ -23,6 +23,7 @@
           nvim-autopairs
           conform-nvim
           toggleterm-nvim
+          mini-bufremove
 
           # Language Support
           (nvim-treesitter.withPlugins (
@@ -56,6 +57,8 @@
           require('rainbow-delimiters.setup').setup()
 
           ${lib.strings.fileContents ./configs/neovim/config.lua}
+
+          ${lib.strings.fileContents ./configs/neovim/bufremove.lua}
 
           ${lib.strings.fileContents ./configs/neovim/blinkcmp.lua}
 
