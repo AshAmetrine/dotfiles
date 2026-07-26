@@ -28,15 +28,20 @@
 
   fonts = {
     fontDir.enable = true;
-    fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" ];
+    fontconfig.defaultFonts = {
+      emoji = [ "Noto Color Emoji" ];
+      monospace = [
+        "Fira Code"
+        "Sarasa Term J"
+      ];
+    };
     packages = with pkgs; [
       nerd-fonts.fira-code
       fira-code
       noto-fonts-color-emoji
       font-awesome
       ashpkgs.dudu-calligraphy
-      ipafont # Japanese
-      wqy_microhei # Chinese
+      sarasa-gothic
     ];
   };
 
