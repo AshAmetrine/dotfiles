@@ -32,11 +32,17 @@
       url = "github:sadjow/codex-cli-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
+      nvf,
       nixpkgs,
       unstable,
       disko,
@@ -93,6 +99,7 @@
         l15v3 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            nvf.nixosModules.default
             nixpkgs-overlay-module
             disko.nixosModules.disko
             wrappers.nixosModules.system-wrappers
