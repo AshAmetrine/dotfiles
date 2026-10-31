@@ -39,7 +39,6 @@
       nerd-fonts.fira-code
       fira-code
       noto-fonts-color-emoji
-      font-awesome
       ashpkgs.dudu-calligraphy
       sarasa-gothic
     ];
@@ -98,14 +97,12 @@
       oreo-cursors-plus
       libnotify
       gnupg
-      #cryfs
       veracrypt # (considered unfree)
 
       # Communication
       iamb
       aerc
       #neomutt
-      #element-desktop
       vesktop
 
       # Web Related

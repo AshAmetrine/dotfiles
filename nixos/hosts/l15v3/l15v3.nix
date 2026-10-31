@@ -94,8 +94,6 @@
     };
   };
 
-  powerManagement.powertop.enable = true;
-
   environment.systemPackages = with pkgs; [
     acpi
     monero-gui
