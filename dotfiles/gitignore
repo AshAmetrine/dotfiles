@@ -4,3 +4,6 @@
 .agents
 .virtfs_metadata
 .workspaces
+.playwright-mcp
+.editorconfig
+AGENTS.md
