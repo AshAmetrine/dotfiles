@@ -89,6 +89,12 @@
         desc = "Format buffer with conform";
         lua = true;
       }
+      {
+        action = "<Cmd>ZenMode<CR>";
+        key = "<leader>g";
+        mode = "n";
+        desc = "Toggle Zen Mode";
+      }
     ]
     ++
       lib.concatMap
@@ -215,7 +221,27 @@
     '';
     startPlugins = with pkgs.vimPlugins; [
       vim-gitgutter
+      limelight-vim
     ];
+    lazy.plugins."zen-mode.nvim" = {
+      package = pkgs.vimPlugins.zen-mode-nvim;
+      setupModule = "zen-mode";
+      cmd = [ "ZenMode" ];
+      setupOpts = {
+        window.options = {
+          number = true;
+          relativenumber = true;
+          cursorlineopt = "line";
+        };
+        plugins.options = {
+          laststatus = 0;
+          showtabline = 0;
+        };
+        plugins.twilight.enabled = false;
+        on_open = lib.generators.mkLuaInline "function() vim.cmd.Limelight() end";
+        on_close = lib.generators.mkLuaInline "function() vim.cmd('Limelight!') end";
+      };
+    };
     visuals = {
       nvim-web-devicons.enable = true;
       rainbow-delimiters.enable = true;
