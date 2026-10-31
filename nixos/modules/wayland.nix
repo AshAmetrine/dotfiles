@@ -65,4 +65,8 @@
   };
 
   security.pam.services.waylock.nodelay = true;
+
+  xdg.mime.defaultApplications = {
+    "image/*" = "swayimg.desktop";
+  };
 }
