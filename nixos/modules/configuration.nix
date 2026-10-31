@@ -115,7 +115,7 @@
 
       # Dev Tools
       codex
-      playwright-mcp
+      unstable.playwright-mcp
       git
       jujutsu
 

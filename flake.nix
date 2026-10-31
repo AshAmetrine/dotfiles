@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     disko = {
       url = "github:nix-community/disko";
@@ -37,6 +38,7 @@
     {
       self,
       nixpkgs,
+      unstable,
       disko,
       mypkgs-ash,
       ash-quickshell-flake,
@@ -54,6 +56,7 @@
         in
         {
           ashpkgs = mypkgs-ash.packages.${system};
+          unstable = unstable.legacyPackages.${system};
           ash-quickshell = ash-quickshell-flake.packages.${system}.default;
           codex = codex-cli-nix.packages.${system}.default;
         };
