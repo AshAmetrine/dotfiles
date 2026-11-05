@@ -10,7 +10,7 @@
     enable = true;
     efiSupport = false;
     biosSupport = true;
-    biosDevice = lib.mkDefault "/dev/sda";
+    biosDevice = lib.mkDefault "/dev/nvme0n1";
     maxGenerations = 3;
     resolution = "1920x1080x32";
     style = {

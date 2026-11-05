@@ -1,9 +1,9 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      nvme = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -33,7 +33,7 @@
               size = "100%";
               content = {
                 type = "luks";
-                name = "cryptroot";
+                name = "cryptroot-nvme";
                 # allow TRIM (Security: This can leak metadata)
                 settings.allowDiscards = true;
 
